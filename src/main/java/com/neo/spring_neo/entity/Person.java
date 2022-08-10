@@ -1,5 +1,7 @@
 package com.neo.spring_neo.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
@@ -9,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Node
+@Data
+@NoArgsConstructor
 public class Person {
 
     @Id

@@ -1,9 +1,14 @@
 package com.neo.spring_neo.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.neo4j.core.schema.*;
 
 import java.time.LocalDate;
 
+
+@Data
+@NoArgsConstructor
 @RelationshipProperties
 public class FriendTo {
 
