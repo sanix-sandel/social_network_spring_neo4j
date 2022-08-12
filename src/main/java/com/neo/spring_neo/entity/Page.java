@@ -1,5 +1,6 @@
 package com.neo.spring_neo.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
@@ -13,6 +14,7 @@ import java.util.List;
 @Node
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Page {
 
     @Id
@@ -20,6 +22,6 @@ public class Page {
     private Long id;
     private String name;
     private Integer nbrOfFollowers=0;
-    @Relationship(type = "has_as_tag", direction = Relationship.Direction.INCOMING)
+    @Relationship(type = "HAS_AS_TAG", direction = Relationship.Direction.INCOMING)
     private List<Tag> tagList=new ArrayList<>();
 }

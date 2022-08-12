@@ -1,11 +1,9 @@
 package com.neo.spring_neo.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.neo4j.core.schema.GeneratedValue;
-import org.springframework.data.neo4j.core.schema.Id;
-import org.springframework.data.neo4j.core.schema.RelationshipProperties;
-import org.springframework.data.neo4j.core.schema.TargetNode;
+import org.springframework.data.neo4j.core.schema.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,10 +11,11 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @RelationshipProperties
 public class Follow {
 
-    @Id @GeneratedValue
+    @RelationshipId
     private Long id;
     private LocalDate since;
     @TargetNode

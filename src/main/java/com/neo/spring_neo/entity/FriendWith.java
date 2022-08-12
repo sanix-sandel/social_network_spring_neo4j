@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @RelationshipProperties
-public class FriendTo {
+public class FriendWith {
 
     @Id
     @GeneratedValue
