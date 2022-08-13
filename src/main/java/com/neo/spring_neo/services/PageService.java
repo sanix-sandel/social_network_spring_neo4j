@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface PageService {
 
+    List<Page>getAll();
+
     List<Page>userFollowedPages(Long id);
 
     List<Page>recommendedPages(Long userId);

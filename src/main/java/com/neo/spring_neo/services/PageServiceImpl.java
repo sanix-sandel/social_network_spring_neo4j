@@ -14,6 +14,11 @@ public class PageServiceImpl implements PageService{
     private final PageRepository pageRepository;
 
     @Override
+    public List<Page> getAll() {
+        return pageRepository.findAll();
+    }
+
+    @Override
     public List<Page> userFollowedPages(Long id) {
         return pageRepository.findFollowedPage(id);
     }
