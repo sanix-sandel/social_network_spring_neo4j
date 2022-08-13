@@ -19,6 +19,6 @@ public class Follow {
     private Long id;
     private LocalDate since;
     @TargetNode
-    private List<Page>pages=new ArrayList<>();
+    private Page page;
 
 }

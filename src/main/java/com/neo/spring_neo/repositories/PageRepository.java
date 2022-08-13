@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface PageRepository extends Neo4jRepository<Page, Long> {
 
-    @Query("MATCH (p:Person)-[:FOLLOWS]->(pg:Page) WHERE p.userId=usersId RETURN pg")
-    List<Page>findFollowedPage(@Param("userId")Long userId);
+    @Query("MATCH (p:Person)-[:FOLLOWS]->(pg:Page) WHERE id(p)=$id RETURN pg")
+    List<Page>findFollowedPage(@Param("id")Long id);
 
     @Query("MATCH (p:Person)-[:FRIEND_WITH]-(f:Person)-[:FOLLOWS]-(p:Page) WHERE p.userId=userId RETURN p")
     List<Page>recommendedPages(@Param("userId")Long userId);

@@ -24,29 +24,38 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         Person person=new Person();
-        person.setName("Sanick");
+        person.setName("nixa");
         Person person1=userRepository.save(person);
 
         Page page=new Page();
-        page.setName("Life");
+        page.setName("Carter Mag");
         Page page1=pageRepository.save(page);
 
         Follow follow=new Follow();
-        follow.getPages().add(page1);
+        follow.setPage(page1);
+        //Follow follow1=followingRepository.save(follow);
 
-        Follow follow1=followingRepository.save(follow);
-
-        person1.getFollows().add(follow1);
+        person1.getFollows().add(follow);
         userRepository.save(person1);
 
         System.out.println(pageService.userFollowedPages(person1.getId()));
 
-        for(Person person2:userRepository.findAll()){
-            System.out.println(person2);
+
+        System.out.println(person1);
+
+        for(Page page2:pageRepository.findAll()){
+            System.out.println(page2);
         }
-        for(Follow follow2:followingRepository.findAll()){
-            System.out.println(follow2);
-        }
+
+        userRepository.deleteAll();
+        pageRepository.deleteAll();
+//
+//        for(Person person2:userRepository.findAll()){
+//            System.out.println(person2);
+//        }
+//        for(Follow follow2:followingRepository.findAll()){
+//            System.out.println(follow2);
+//        }
 
 
     }

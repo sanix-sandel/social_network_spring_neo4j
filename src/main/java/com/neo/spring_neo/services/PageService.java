@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface PageService {
 
-    List<Page>userFollowedPages(Long userId);
+    List<Page>userFollowedPages(Long id);
 }
