@@ -1,11 +1,9 @@
 package com.neo.spring_neo.bootstrap;
 
-import com.neo.spring_neo.entity.Follow;
-import com.neo.spring_neo.entity.FriendWith;
-import com.neo.spring_neo.entity.Page;
-import com.neo.spring_neo.entity.Person;
-import com.neo.spring_neo.repositories.FollowingRepository;
+import com.neo.spring_neo.entity.*;
 import com.neo.spring_neo.repositories.PageRepository;
+import com.neo.spring_neo.repositories.PostRepository;
+import com.neo.spring_neo.repositories.TagRepository;
 import com.neo.spring_neo.repositories.UserRepository;
 import com.neo.spring_neo.services.PageService;
 import lombok.Data;
@@ -22,7 +20,8 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private final PageRepository pageRepository;
     private final UserRepository userRepository;
-    private final FollowingRepository followingRepository;
+    private final PostRepository postRepository;
+    private final TagRepository tagRepository;
     private final PageService pageService;
 
     @Override
@@ -104,11 +103,55 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
         System.out.println(pageService.recommendedPages(person.getId()));
 
+        FriendWith friendWith1=new FriendWith();
+        friendWith1.setFriendTo(person2);
+
+        Person person3=new Person();
+        person3.setName("Neldie");
+        person3.getFriendTo().add(friendWith1);
+//        person3.getFollows().add(follow22);
+        userRepository.save(person3);
 
 
+        FriendWith friendWith2=new FriendWith();
+        friendWith2.setFriendTo(person2);
+        Person person4=new Person();
+        person4.setName("Ruth");
+        person4.getFriendTo().add(friendWith2);
+//        person4.getFollows().add(follow21);
+//        person4.getFollows().add(follow11);
+        userRepository.save(person4);
+
+        Tag tag=new Tag();
+        tag.setName("business");
+        tagRepository.save(tag);
+
+        Tag tag1=new Tag();
+        tag1.setName("Tech");
+        tagRepository.save(tag1);
+
+        Post post=new Post();
+        post.setContent("Sandel Ikani, The new one !");
+        post.getTagList().add(tag);
+        post.getTagList().add(tag1);
+        Post createdPost=postRepository.save(post);
+
+        createdPost.getLikers().add(person4);
+        postRepository.save(createdPost);
+
+        page.getPosts().add(createdPost);
+        pageRepository.save(page);
+
+
+
+
+//
 //        userRepository.deleteAll();
 //        pageRepository.deleteAll();
-////
+//        postRepository.deleteAll();
+//        tagRepository.deleteAll();
+
+//
 //        for(Person person2:userRepository.findAll()){
 //            System.out.println(person2);
 //        }
