@@ -13,4 +13,8 @@ public interface PostRepository extends Neo4jRepository<Post, Long> {
     //fetch posts by tag
     @Query("MATCH (p:Post)-[:TAGGED]-(t:Tag) WHERE tg.name=$tag RETURN p")
     List<Post>postsByTag(@Param("tag") String tag);
+
+    //fetch posts liked by user's friends
+    @Query("MATCH (p:Post)-[:LIKES]-(friend:Person)-[:FRIEND_WITH]-(user:Person) AND NOT exists((user)-[:LIKES]-(p)) WHERE id(user)=$userId RETURN p")
+    List<Post>recommendedPosts(@Param("userId") Long userId);
 }

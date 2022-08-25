@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserRepository extends Neo4jRepository<Person, Long> {
 
-    //recommend friends (friends of user's friends)
+    //to recommend friends (friends of user's friends)
     @Query("MATCH (p:Person)-[:FRIEND_WITH]-(:Person)-[:FRIEND_WITH]-(fp:Person) WHERE p.id=userId AND NOT exists((p)-[:FRIEND_WITH]-(fp)) RETURN fp")
     List<Person> findFriendOfFriend(Long userId);
 
