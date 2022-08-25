@@ -17,7 +17,9 @@ public interface PageRepository extends Neo4jRepository<Page, Long> {
     @Query("MATCH (p:Person)-[:FRIEND_WITH]-(f:Person)-[:FOLLOWS]-(pg:Page) WHERE id(p)=$userId AND NOT exists((p)-[:FOLLOWS]-(pg)) RETURN pg")
     List<Page>recommendedPages(@Param("userId")Long userId);
 
-
+    //fetching pages by tag
+    @Query("MATCH (pg:Page)-[:HAS_AS_TAG]-(tg:Tag) WHERE tg.name=$tag RETURN pg")
+    List<Page>pagesByTag(@Param("tag") String tag);
 
 
 }
